@@ -1,6 +1,6 @@
 {
   "name": "@libsrcdev/gatsby-source-github-graphql-get-user",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A Gatsby source plugin for sourcing GitHub User data using the GitHub GraphQL API. Must be used as a sub-plugin of `@libsrcdev/gatsby-source-github-graphql`.",
   "keywords": [
     "gatsby",
