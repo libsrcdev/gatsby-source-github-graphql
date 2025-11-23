@@ -1,6 +1,30 @@
 {
   "name": "@libsrcdev/gatsby-source-github-graphql-get-user",
   "version": "0.1.0",
+  "description": "A Gatsby source plugin for sourcing GitHub User data using the GitHub GraphQL API. Must be used as a sub-plugin of `@libsrcdev/gatsby-source-github-graphql`.",
+  "keywords": [
+    "gatsby",
+    "source",
+    "github",
+    "graphql",
+    "get",
+    "user",
+    "data",
+    "org"
+  ],
+  "homepage": "https://github.com/libsrcdev/gatsby-source-github-graphql#readme",
+  "bugs": {
+    "url": "https://github.com/libsrcdev/gatsby-source-github-graphql/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/libsrcdev/gatsby-source-github-graphql.git"
+  },
+  "license": "MIT",
+  "author": "@libsrcdev",
+  "type": "commonjs",
   "main": "index.js",
-  "license": "MIT"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
 }
