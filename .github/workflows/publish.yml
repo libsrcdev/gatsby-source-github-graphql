@@ -89,7 +89,7 @@ jobs:
       - name: Build package
         if: steps.check.outputs.should_publish == 'true'
         working-directory: ${{ env.PACKAGE_DIR }}
-        run: npm run build
+        run: npm run build --if-present
 
       - name: Publish package
         if: steps.check.outputs.should_publish == 'true'
