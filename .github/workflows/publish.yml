@@ -1,0 +1,103 @@
+name: "Monorepo Packages Release to NPM"
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  discover-packages:
+    name: "Discover Packages"
+    runs-on: ubuntu-latest
+    outputs:
+      packages: ${{ steps.packages.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: packages
+        name: "Find packages in ./packages"
+        run: |
+          echo "Discovering packages in ./packages..."
+          # Get folder names under packages/ and convert to JSON array
+          PACKAGES=$(find packages -maxdepth 1 -mindepth 1 -type d -printf '%f\n' \
+            | jq -R -s -c 'split("\n")[:-1]')
+          echo "Found packages: $PACKAGES"
+          echo "matrix=$PACKAGES" >> "$GITHUB_OUTPUT"
+
+  release:
+    name: "Release ${{ matrix.package }} to NPM"
+    needs: discover-packages
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        package: ${{ fromJson(needs.discover-packages.outputs.packages) }}
+    env:
+      # Directory for the current package in the matrix
+      PACKAGE_DIR: packages/${{ matrix.package }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read version from package.json
+        id: read_version
+        run: |
+          VERSION=$(jq -r '.version' "$PACKAGE_DIR/package.json")
+          echo "Package dir: $PACKAGE_DIR"
+          echo "Package version: $VERSION"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Check if version exists on npm
+        id: check
+        run: |
+          PACKAGE_NAME=$(jq -r '.name' "$PACKAGE_DIR/package.json")
+          VERSION="${{ steps.read_version.outputs.version }}"
+
+          echo "Checking npm for $PACKAGE_NAME@$VERSION"
+
+          EXISTS=$(npm view "$PACKAGE_NAME" versions --json 2>/dev/null \
+            | jq -e '.[] | select(.=="'"$VERSION"'")' || echo "no")
+
+          if [ "$EXISTS" = "no" ]; then
+            echo "Version $PACKAGE_NAME@$VERSION does not exist on npm. Will publish."
+            echo "should_publish=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Version $PACKAGE_NAME@$VERSION already exists on npm. Skipping publish."
+            echo "should_publish=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/setup-node@v4
+        if: steps.check.outputs.should_publish == 'true'
+        with:
+          node-version: '25'
+          registry-url: 'https://registry.npmjs.org'
+          scope: \@${{ github.repository_owner }}
+
+      - name: Update npm
+        if: steps.check.outputs.should_publish == 'true'
+        run: npm install -g npm@latest
+
+      - name: Install dependencies (root)
+        if: steps.check.outputs.should_publish == 'true'
+        run: npm ci
+
+      - name: Build package
+        if: steps.check.outputs.should_publish == 'true'
+        working-directory: ${{ env.PACKAGE_DIR }}
+        run: npm run build
+
+      - name: Publish package
+        if: steps.check.outputs.should_publish == 'true'
+        working-directory: ${{ env.PACKAGE_DIR }}
+        run: npm publish --access public
+
+      - name: Skip publish (version already exists)
+        if: steps.check.outputs.should_publish == 'false'
+        run: |
+          PACKAGE_NAME=$(jq -r '.name' "$PACKAGE_DIR/package.json")
+          echo "Version ${{ steps.read_version.outputs.version }} for $PACKAGE_NAME already exists on npm. Skipping publish."
