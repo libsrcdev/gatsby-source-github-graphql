@@ -1,20 +1,30 @@
 {
   "name": "@libsrcdev/gatsby-source-github-graphql",
-  "description": "A simple starter to get up and developing quickly with Gatsby",
-  "version": "0.1.1",
+  "version": "0.1.2",
+  "description": "Gatsby source plugin that fetches data from GitHub GraphQL API and makes it available in the Gatsby GraphQL Data Layer. It supports subplugins to fetch specific GitHub resources and create relationships between them.",
+  "keywords": [
+    "gatsby",
+    "source",
+    "github",
+    "graphql"
+  ],
+  "homepage": "https://github.com/libsrcdev/gatsby-source-github-graphql#readme",
+  "bugs": {
+    "url": "https://github.com/libsrcdev/gatsby-source-github-graphql/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/libsrcdev/gatsby-source-github-graphql.git"
+  },
+  "license": "MIT",
+  "author": "@libsrcdev",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {},
   "dependencies": {
     "@octokit/graphql": "^5.0.1"
   },
   "devDependencies": {
     "prettier": "^2.7.1"
-  },
-  "license": "MIT",
-  "scripts": {},
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/libsrcdev/gatsby-source-github-graphql"
-  },
-  "bugs": {
-    "url": "https://github.com/libsrcdev/gatsby-source-github-graphql/issues"
   }
 }

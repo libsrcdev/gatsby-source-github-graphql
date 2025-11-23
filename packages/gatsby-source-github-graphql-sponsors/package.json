@@ -1,18 +1,30 @@
 {
   "name": "@libsrcdev/gatsby-source-github-graphql-sponsors",
+  "version": "0.1.1",
   "description": "Subplugin of gatsby-source-github-graphql for fetching the sponsors and sponring network of a user.",
-  "version": "0.1.0",
-  "dependencies": {},
-  "devDependencies": {
-    "prettier": "^2.7.1"
-  },
-  "license": "MIT",
-  "scripts": {},
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/libsrcdev/gatsby-remark-remote-images-and-gifs"
-  },
+  "keywords": [
+    "gatsby",
+    "source",
+    "github",
+    "graphql",
+    "user",
+    "org",
+    "sponsors"
+  ],
+  "homepage": "https://github.com/libsrcdev/gatsby-remark-remote-images-and-gifs#readme",
   "bugs": {
     "url": "https://github.com/libsrcdev/gatsby-remark-remote-images-and-gifs/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/libsrcdev/gatsby-remark-remote-images-and-gifs.git"
+  },
+  "license": "MIT",
+  "author": "@libsrcdev",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {},
+  "devDependencies": {
+    "prettier": "^2.7.1"
   }
 }

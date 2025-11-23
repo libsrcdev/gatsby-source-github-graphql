@@ -1,6 +1,28 @@
 {
   "name": "@libsrcdev/gatsby-source-github-graphql-user-repos",
   "version": "0.1.0",
+  "description": "Gatsby sub-plugin of `@libsrcdev/gatsby-source-github-graphql` that fetches the repositories of a given user/org.",
+  "keywords": [
+    "gatsby",
+    "source",
+    "github",
+    "graphql",
+    "user",
+    "repos"
+  ],
+  "homepage": "https://github.com/libsrcdev/gatsby-source-github-graphql#readme",
+  "bugs": {
+    "url": "https://github.com/libsrcdev/gatsby-source-github-graphql/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/libsrcdev/gatsby-source-github-graphql.git"
+  },
+  "license": "MIT",
+  "author": "@libsrcdev",
+  "type": "commonjs",
   "main": "index.js",
-  "license": "MIT"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
 }

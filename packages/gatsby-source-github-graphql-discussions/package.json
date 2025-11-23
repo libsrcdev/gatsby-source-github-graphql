@@ -1,19 +1,29 @@
 {
   "name": "@libsrcdev/gatsby-source-github-graphql-discussions",
-  "description": "A simple starter to get up and developing quickly with Gatsby",
-  "version": "0.1.0",
-  "dependencies": {
-  },
-  "devDependencies": {
-    "prettier": "^2.7.1"
-  },
-  "license": "MIT",
-  "scripts": {},
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/libsrcdev/gatsby-source-github-graphql"
-  },
+  "version": "0.1.1",
+  "description": "A Gatsby source plugin for sourcing GitHub Discussions data using the GitHub GraphQL API. Must be used as a sub-plugin of `@libsrcdev/gatsby-source-github-graphql`.",
+  "keywords": [
+    "gatsby",
+    "source",
+    "github",
+    "graphql",
+    "discussions",
+    "repo"
+  ],
+  "homepage": "https://github.com/libsrcdev/gatsby-source-github-graphql#readme",
   "bugs": {
     "url": "https://github.com/libsrcdev/gatsby-source-github-graphql/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/libsrcdev/gatsby-source-github-graphql.git"
+  },
+  "license": "MIT",
+  "author": "@libsrcdev",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {},
+  "devDependencies": {
+    "prettier": "^2.7.1"
   }
 }

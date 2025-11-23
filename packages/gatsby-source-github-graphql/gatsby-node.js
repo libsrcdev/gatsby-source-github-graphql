@@ -74,7 +74,7 @@ exports.sourceNodes = async (...args) => {
         // for different purposes.
         meta: {
           plugin: plugin.name,
-          source: subpluginOptions.source,
+          key: subpluginOptions.key,
         },
       }));
     }
