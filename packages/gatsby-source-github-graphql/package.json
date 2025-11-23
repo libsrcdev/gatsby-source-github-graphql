@@ -1,6 +1,6 @@
 {
   "name": "@libsrcdev/gatsby-source-github-graphql",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Gatsby source plugin that fetches data from GitHub GraphQL API and makes it available in the Gatsby GraphQL Data Layer. It supports subplugins to fetch specific GitHub resources and create relationships between them.",
   "keywords": [
     "gatsby",
