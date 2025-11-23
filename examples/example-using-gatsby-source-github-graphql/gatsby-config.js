@@ -6,8 +6,8 @@ module.exports = {
   siteMetadata: {
     title: `Gatsby GitHub GraphQL Source`,
     description: `Fetch data from GitHub and keep the connections and relationships between nodes.`,
-    author: `@alexrintt`,
-    siteUrl: `https://github.com/alexrintt/gatsby-source-github-graphql`,
+    author: `@libsrcdev`,
+    siteUrl: `https://github.com/libsrcdev/gatsby-source-github-graphql`,
   },
   plugins: [
     {
@@ -65,8 +65,8 @@ module.exports = {
             // Plugin to fetch all discussions of a repository and adding markdown features to the [discussion.body] field.
             resolve: `gatsby-source-github-graphql-discussions`,
             options: {
-              owner: `alexrintt`,
-              repo: `rintt`,
+              owner: `libsrcdev`,
+              repo: `gatsby-blog-example`,
               categorySlugs: [`Published`],
             },
           },
@@ -86,7 +86,7 @@ module.exports = {
               limit: 3,
 
               // Target user account.
-              login: `alexrintt`,
+              login: `libsrcdev`,
 
               // Wether or not should fetch only locked repos, remove or set to [null] to omit this filter.
               isLocked: false,

@@ -3,7 +3,7 @@
   "private": true,
   "description": "Example app using the Gatsby GitHub GraphQL Source plugin.",
   "version": "0.1.0",
-  "author": "Alex Rintt <alexrintt@gmail.com>",
+  "author": "@libsrcdev",
   "dependencies": {
     "dotenv": "^16.0.3",
     "gatsby": "^4.24.3",

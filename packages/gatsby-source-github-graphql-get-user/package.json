@@ -1,5 +1,5 @@
 {
-  "name": "gatsby-source-github-graphql-get-user",
+  "name": "@libsrcdev/gatsby-source-github-graphql-get-user",
   "version": "0.1.0",
   "main": "index.js",
   "license": "MIT"

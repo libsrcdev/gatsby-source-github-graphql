@@ -1,5 +1,5 @@
 {
-  "name": "gatsby-source-github-graphql",
+  "name": "@libsrcdev/gatsby-source-github-graphql",
   "description": "A simple starter to get up and developing quickly with Gatsby",
   "version": "0.1.1",
   "dependencies": {
@@ -12,9 +12,9 @@
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "https://github.com/alexrintt/gatsby-remark-remote-images-and-gifs"
+    "url": "https://github.com/libsrcdev/gatsby-source-github-graphql"
   },
   "bugs": {
-    "url": "https://github.com/alexrintt/gatsby-remark-remote-images-and-gifs/issues"
+    "url": "https://github.com/libsrcdev/gatsby-source-github-graphql/issues"
   }
 }

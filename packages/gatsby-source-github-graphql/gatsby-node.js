@@ -323,7 +323,7 @@ exports.pluginOptionsSchema = function ({ Joi }) {
         `Wether or not should generate the optimized version of the GitHub repository [openGraphImageUrl] field. Set to [false] if you do not want to. Defaults to [true].`
       ),
     plugins: Joi.subPlugins().description(
-      `A list of subplugins. See also: https://github.com/alexrintt/gatsby-source-github-graphql for examples`
+      `A list of subplugins. See also: https://github.com/libsrcdev/gatsby-source-github-graphql for examples`
     ),
   });
 };

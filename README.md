@@ -1,3 +1,7 @@
+# gatsby-source-github-graphql
+
+Gatsby Source GitHub GraphQL is a Gatsby source plugin that fetches data from GitHub GraphQL API and makes it available in the Gatsby GraphQL Data Layer. It supports subplugins to fetch specific GitHub resources and create relationships between them.
+
 ## Features
 
 - It does **NOT** support Incremental Builds (not tested at least).
@@ -13,9 +17,7 @@
 This package is not published to npm yet, you need to install using [gitpkg](https://gitpkg.now.sh/).
 
 ```shell
-npm install https://gitpkg.now.sh/alexrintt/gatsby-source-github-graphql/packages/gatsby-source-github-graphql?main
-# or
-yarn add https://gitpkg.now.sh/alexrintt/gatsby-source-github-graphql/packages/gatsby-source-github-graphql?main
+npm install @libsrcdev/gatsby-source-github-graphql
 ```
 
 ## Usage
@@ -26,14 +28,14 @@ module.exports = {
   // ...
   plugins: [
     {
-      resolve: `gatsby-source-github-graphql`,
+      resolve: `@libsrcdev/gatsby-source-github-graphql`,
       // Required, GitHub only allow authenticated requests.
       // Your token is not shared across subplugins even if you specify a custom token to it.
       token: process.env.GITHUB_TOKEN,
       options: {
         plugins: [
           {
-            resolve: `gatsby-source-github-graphql-discussions`,
+            resolve: `@libsrcdev/gatsby-source-github-graphql-discussions`,
             options: {
               owner: `<your-target-username>`,
               repo: `<your-target-user-repo>`
@@ -41,7 +43,7 @@ module.exports = {
           },
           {
             // You can duplicate the plugins to fetch data from multiple times from different sources.
-            resolve: `gatsby-source-github-graphql-discussions`,
+            resolve: `@libsrcdev/gatsby-source-github-graphql-discussions`,
             options: {
               owner: `<your-another-target-username>`,
               repo: `<another-target-user-repo>`,
@@ -58,7 +60,7 @@ module.exports = {
 
 ## Why does it exists
 
-Because I'm building my blog that will be soon available at [alexrintt.io](https://alexrintt.io) and was searching for a plugin that fill these requirements:
+Because I'm building my blog that will be soon available at [alexcastro.dev](https://alexcastro.dev) and was searching for a plugin that fill these requirements:
 
 - Fetch data from GitHub GraphQL API.
 - Supports Gatsby GraphQL Data Layer.
@@ -75,7 +77,7 @@ Because I'm building my blog that will be soon available at [alexrintt.io](https
 - Supports image optimization, bandwidth bla-bla - this is also important but lets talk about this motherf [web.dev/optimize-cls](https://web.dev/optimize-cls/).
 - Markdown compatible (or any other markup), at this moment I'm using the discussions of a repository as markdown files to build a blog, but what if I want to switch in the future, or maybe change the processing rule or package?
 
-### What I've tried before:
+### What I've tried before
 
 - [mosch/gatsby-source-github](https://github.com/mosch/gatsby-source-github/blob/master/src/gatsby-node.js) this unfortunately only supports fetching the file tree and the releases of a repository.
 - [ldd/gatsby-source-github-api](https://github.com/ldd/gatsby-source-github-api) which also doesn't support relationships. All nodes are the same type, which means there are no connection between data required; there are only flat nodes (of type `GithubData`).
@@ -89,17 +91,17 @@ This monorepo is a Gatsby data source plugin + set of source subplugins which ai
 
 Technically saying:
 
-- `coreplugin` is the actually Gatsby source plugin that is plugged directly into your `gatsby-config.js` and it's available under _/packages/gatsby-source-github-graphql_.
-- `subplugins` can be any Gatsby subplugin (under your Gatsby project at _/plugins/your-gatsby-plugin-that-will-be-used-as-subplugin_ or one of the already supported plugins at _/packages/gatsby-source-github-graphql-some-cool-usecase_ in this repo.
-- The core plugin request it's subplugins to fetch what data they want to `coreplugin.sourceNodes -> subplugins.sourceNodes`.
-- Then the core plugin connect the edges by creating the nodes by it's types `coreplugin.onCreateNodes`.
-- And finally the core plugin request it's subplugins again to create the schema customization through `subplugin.createSchemaCustomization`.
+- Let `coreplugin` be the actual Gatsby source plugin that is plugged directly into your `gatsby-config.js` and it's available under _/packages/gatsby-source-github-graphql_.
+- Let `subplugin` be any Gatsby subplugin (under your Gatsby project at _/plugins/your-gatsby-plugin-that-will-be-used-as-subplugin_ or one of the already supported plugins at _/packages/gatsby-source-github-graphql-some-cool-usecase_ in this repo).
+- The `coreplugin` request it's subplugins to fetch what data they want to `coreplugin.sourceNodes -> subplugins.sourceNodes`.
+- Then the `coreplugin` connect the edges by creating the nodes by it's types `coreplugin.onCreateNodes`.
+- And finally the `coreplugin` request it's subplugins again to create the schema customization through `subplugin.createSchemaCustomization`.
 
 This is an answer and a question because I don't know if it's ok to create plugins in this way, I tried to copy/keep the same essence of [gatsbyjs/gatsby/packages/gatsby-transformer-remark](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-transformer-remark) but I'm not sure if it's sustentable, I did it only for personal use while trying to make it easy for me to extend in case of in the future adding some blog feature or modify an existing one.
 
 But as always, do you have an idea or recommendation? just push it into the issues stack. Your use-case is not supported yet? feel free [to create a subplugin](#how-to-create-a-subplugin) and open a pull request.
 
-## How to create a subplugin 
+## How to create a subplugin
 
 Lets learn by example, the following section will create a subplugin which will fetch the \[viewer] or a given user from his \[login] and add it to the Gatsby GraphQL Data Layer.
 
@@ -288,18 +290,3 @@ A prinscreen of what it should looks like:
 <img src="https://user-images.githubusercontent.com/51419598/196519795-2041eeb3-5d1b-438a-9012-720a6f71d24c.png">
 
 11. Now keep hacking and use it to build your website/blog.
-
-<samp>
-
-<h2 align="center">
-  Open Source
-</h2>
-<p align="center">
-  <sub>Copyright © 2022-present, Alex Rintt.</sub>
-</p>
-<p align="center">Gatsby Source GitHub GraphQL <a href="/LICENSE">is MIT licensed 💖</a></p>
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/51419598/194058464-f67c7fb5-9066-49b5-aa94-cf34830708ad.png" width="35" />
-</p>
-
-</samp>
