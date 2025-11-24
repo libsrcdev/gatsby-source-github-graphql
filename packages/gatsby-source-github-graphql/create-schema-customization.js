@@ -1,7 +1,7 @@
-const { getPluginNodeTypes } = require(`./github-graphql-defs`);
-const { removeKey } = require("./utils");
+const { getPluginNodeTypes } = require(`./src/github-graphql-defs`);
+const { removeKey } = require("./src/utils");
 
-module.exports = async (...args) => {
+module.exports = async function createSchemaCustomization(...args) {
   const [gatsbyNodeApis, pluginOptions] = args;
 
   const pluginNodeTypes = getPluginNodeTypes(pluginOptions.pluginNodeTypes);
