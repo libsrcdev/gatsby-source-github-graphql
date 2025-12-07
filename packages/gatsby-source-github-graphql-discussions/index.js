@@ -120,6 +120,7 @@ module.exports.createSchemaCustomization = (
 ) => {
   const { createTypes } = actions;
 
+	// FIXME: The 'discussions' field on the User type is not working
   const typeDefs = `
     type ${pluginNodeTypes.USER} implements Node {
       discussions: [${pluginNodeTypes.DISCUSSION}] @link(by: "author.id", from: "githubId")
